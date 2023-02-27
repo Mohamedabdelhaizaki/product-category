@@ -2,7 +2,7 @@
 
 ### How To Use
 
--   git clone https://github.com/Mohamedabdelhaizaki/saloodo.git .
+-   git clone https://github.com/Mohamedabdelhaizaki/product-category.git .
 -   composer install
 -   open .env file and add yours database name
 -   php artisan migrate --seed
