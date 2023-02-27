@@ -32,7 +32,10 @@
                     "url": "{{ asset('i18n/' . config('app.locale') . '.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('products.index') }}"
+                    url: "{{ route('products.index') }}",
+                    data: function(data) {
+                        data.category = $('#category').val();
+                    },
                 },
                 columns: [{
                         data: function(data, type, full, meta) {
@@ -91,6 +94,10 @@
                         searchable: false
                     }
                 ],
+            });
+
+            $('#category').on('change', function() {
+                table.draw();
             });
 
             $(document).on('click', '.deleteProduct', function() {

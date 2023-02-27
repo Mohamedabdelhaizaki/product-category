@@ -36,6 +36,7 @@ class Product extends Model implements HasMedia
         if (!isset($request->search["value"])) return $query;
 
         return $query->orWhere('name->' . app()->getLocale(), 'like', '%' . $request->search['value'] . '%')
+            ->orWhereRelation('category', 'name->' . app()->getLocale(), 'like', '%' . $request->search['value'] . '%')
             ->orWhereDate('created_at', 'like', '%' . $request->search["value"] . '%');
     }
 

@@ -30,6 +30,20 @@ class ProductController extends Controller
 
 
             if (isset($request->search['value']))  $products->search($request);
+
+            if ($request->has('category')) {
+                switch ($request->category) {
+                    case 'all':
+                        break;
+                    case 'none':
+                        $products->whereNull('category_id');
+                        break;
+                    default:
+                        $products->where('category_id', $request->category);
+                        break;
+                }
+            }
+
             $productCount = $products->count();
 
             $products = $products->skip($request->start)
@@ -38,8 +52,8 @@ class ProductController extends Controller
             return ProductCollection::make($products)
                 ->additional(['total_count' => $productCount]);
         }
-
-        return view('product.index');
+        $categories = Category::select('id', 'name')->where('is_active', 1)->get();
+        return view('product.index', compact('categories'));
     }
 
     /**

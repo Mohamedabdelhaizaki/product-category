@@ -33,11 +33,27 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3">{{ __('Products') }}</h5>
-                        <div class="col-sm-12 mb-3">
-                            <a title="{{ __('Add New Product') }}" href="{{ route('products.create') }}"
-                                class="btn btn-success btn-rounded btn-sm ms-3"><i class="mdi mdi-plus"></i>
-                                {{ __('Add New Product') }}</a>
-                        </div><!-- end col-->
+                        <div class="row mb-2">
+
+                            <div class="col-sm-6 mb-3">
+                                <a title="{{ __('Add New Product') }}" href="{{ route('products.create') }}"
+                                    class="btn btn-success btn-rounded btn-sm ms-3"><i class="mdi mdi-plus"></i>
+                                    {{ __('Add New Product') }}</a>
+                            </div><!-- end col-->
+
+                            <div class="col-sm-6">
+                                <label for="category">{{ __('Category') }}</label>
+
+                                <select name="category" id="category" data-placeholder="{{ __('Select Category') }}"
+                                    data-dir="{{ __('ltr') }}" class="form-control select2" data-toggle="select2">
+                                    <option value="all" selected> {{ __('All') }} </option>
+                                    <option value="none"> {{ __('None') }} </option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="table-responsive">
                             <table id="productsTable" class="table table-striped w-100 dt-responsive nowrap">

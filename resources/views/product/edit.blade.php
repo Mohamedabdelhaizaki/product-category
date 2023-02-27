@@ -79,8 +79,9 @@
 
                             <div class="form-group row mb-3">
                                 <div class="col-sm-6">
+                                    <label for="category">{{ __('Category') }}</label>
                                     <span class="text-danger" id="category_id_error"></span>
-                                    <select name="category_id" data-placeholder="{{ __('Select Category') }}"
+                                    <select name="category_id" id="category" data-placeholder="{{ __('Select Category') }}"
                                         data-dir="{{ __('ltr') }}" class="form-control select2" data-toggle="select2">
                                         <option disabled value="">
                                             {{ __('Select Category') }}
